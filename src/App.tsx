@@ -105,6 +105,11 @@ function App() {
   const handlePersonSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!fields.firstName.trim() || !fields.lastName.trim()) {
+      setError("First name and last name fields mandatory!");
+      return;
+    }
+
     if (!fields.selectedAddress || !addresses.length) {
       setError(
         "No address selected, try to select an address or find one if you haven't"
