@@ -43,7 +43,12 @@ body {
 }
 
 main {
-  padding: 2rem;
+  padding: 1rem;
+  max-width: var(--width-content);
+  margin: 2rem auto;
+  background: var(--color-background);
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 2px 12px rgba(65, 62, 247, 0.08);
 }
 
 small {
@@ -57,11 +62,44 @@ fieldset {
   border-bottom: 1px solid var(--color-accent);
   border-top: 1px solid var(--color-accent);
   margin: 2rem 0;
-  max-width: var(--width-input);
-  padding: 1rem 0;
+  max-width: 100%;
+  padding: 1rem 0.5rem;
   width: 100%;
 }
 
 legend {
   color: var(--color-text-light);
+}
+
+@media (min-width: 600px) {
+  main {
+    padding: 2rem 3rem;
+    max-width: var(--width-content);
+    margin: 3rem auto;
+  }
+  .section {
+    padding: 2rem 3rem;
+    max-width: var(--width-content);
+    margin: 0 auto;
+  }
+  fieldset {
+    max-width: var(--width-input);
+    padding: 1rem 0;
+    margin: 2rem auto;
+  }
+}
+
+@media (max-width: 400px) {
+  body {
+    font-size: 16px;
+  }
+  .section {
+    padding: 0.5rem;
+  }
+  fieldset {
+    padding: 0.5rem 0.25rem;
+  }
+  small {
+    font-size: 0.6em;
+  }
 }
