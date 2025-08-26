@@ -11,6 +11,7 @@ import useAddressBook from "@/hooks/useAddressBook";
 import styles from "./App.module.css";
 import { Address as AddressType } from "./types";
 import { useState } from "react";
+import Form from "@/components/Form/Form";
 
 function App() {
   /**
@@ -133,28 +134,30 @@ function App() {
           </small>
         </h1>
         {/* TODO: Create generic <Form /> component to display form rows, legend and a submit button  */}
-        <form onSubmit={handleAddressSubmit}>
-          <fieldset>
-            <legend>🏠 Find an address</legend>
-            <div className={styles.formRow}>
-              <InputText
-                name="postCode"
-                onChange={onChange}
-                placeholder="Post Code"
-                value={fields.postCode}
-              />
-            </div>
-            <div className={styles.formRow}>
-              <InputText
-                name="houseNumber"
-                onChange={onChange}
-                value={fields.houseNumber}
-                placeholder="House number"
-              />
-            </div>
-            <Button type="submit">Find</Button>
-          </fieldset>
-        </form>
+        <Form
+          label="🏠 Find an address"
+          loading={false}
+          formEntries={[
+            {
+              name: "postCode",
+              placeholder: "Post Code",
+              extraProps: {
+                value: fields.postCode,
+                onChange,
+              },
+            },
+            {
+              name: "houseNumber",
+              placeholder: "House number",
+              extraProps: {
+                value: fields.houseNumber,
+                onChange,
+              },
+            },
+          ]}
+          onFormSubmit={handleAddressSubmit}
+          submitText="Find"
+        />
         {addresses.length > 0 &&
           addresses.map((address) => {
             return (
@@ -170,28 +173,30 @@ function App() {
           })}
         {/* TODO: Create generic <Form /> component to display form rows, legend and a submit button  */}
         {fields.selectedAddress && (
-          <form onSubmit={handlePersonSubmit}>
-            <fieldset>
-              <legend>✏️ Add personal info to address</legend>
-              <div className={styles.formRow}>
-                <InputText
-                  name="firstName"
-                  placeholder="First name"
-                  onChange={onChange}
-                  value={fields.firstName}
-                />
-              </div>
-              <div className={styles.formRow}>
-                <InputText
-                  name="lastName"
-                  placeholder="Last name"
-                  onChange={onChange}
-                  value={fields.lastName}
-                />
-              </div>
-              <Button type="submit">Add to addressbook</Button>
-            </fieldset>
-          </form>
+          <Form
+            label="✏️ Add personal info to address"
+            loading={false}
+            formEntries={[
+              {
+                name: "firstName",
+                placeholder: "First name",
+                extraProps: {
+                  value: fields.firstName,
+                  onChange,
+                },
+              },
+              {
+                name: "lastName",
+                placeholder: "Last name",
+                extraProps: {
+                  value: fields.lastName,
+                  onChange,
+                },
+              },
+            ]}
+            onFormSubmit={handlePersonSubmit}
+            submitText="Add to addressbook"
+          />
         )}
 
         {/* TODO: Create an <ErrorMessage /> component for displaying an error message */}

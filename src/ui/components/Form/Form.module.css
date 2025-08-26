@@ -1,0 +1,23 @@
+.formRow {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.formContainer fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formContainer legend {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--color-brand);
+  margin-bottom: 1rem;
+}
+
+.formContainer button[type="submit"] {
+  margin-top: 1rem;
+}
