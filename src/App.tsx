@@ -12,6 +12,7 @@ import styles from "./App.module.css";
 import { Address as AddressType } from "./types";
 import { useState } from "react";
 import Form from "@/components/Form/Form";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
 function App() {
   /**
@@ -200,7 +201,7 @@ function App() {
         )}
 
         {/* TODO: Create an <ErrorMessage /> component for displaying an error message */}
-        {error && <div className="error">{error}</div>}
+        <ErrorMessage message={error} />
 
         {/* TODO: Add a button to clear all form fields. 
         Button must look different from the default primary button, see design. 
