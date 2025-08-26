@@ -66,6 +66,35 @@ function App() {
    */
   const handleAddressSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(undefined);
+    setAddresses([]);
+
+    if (!fields.postCode || !fields.houseNumber) {
+      setError("Please enter both postcode and house number.");
+      return;
+    }
+
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_URL;
+      const url = `${baseUrl}/api/getAddresses?postcode=${fields.postCode}&streetnumber=${fields.houseNumber}`;
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Failed to fetch addresses");
+      }
+      const data = await response.json();
+
+      const transformed = Array.isArray(data)
+        ? data.map((address: AddressType) => ({
+            ...address,
+            houseNumber: fields.houseNumber,
+          }))
+        : [];
+
+      setAddresses(transformed);
+    } catch (err) {
+      setError("Error fetching addresses. Please try again.");
+    }
   };
 
   /** TODO: Add basic validation to ensure first name and last name fields aren't empty
