@@ -209,6 +209,17 @@ function App() {
         On Click, it must clear all form fields, remove all search results and clear all prior
         error messages
         */}
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={() => {
+            resetFields();
+            setAddresses([]);
+            setError(undefined);
+          }}
+        >
+          Clear all fields
+        </Button>
       </Section>
 
       <Section variant="dark">
